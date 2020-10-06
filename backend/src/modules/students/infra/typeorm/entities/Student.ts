@@ -11,14 +11,17 @@ class Student {
   @PrimaryGeneratedColumn('uuid')
   id: string;
 
-  @Column('int')
-  RA: string;
-
   @Column()
   name: string;
 
   @Column()
-  CPF: string;
+  email: string;
+
+  @Column('int')
+  ra: number;
+
+  @Column()
+  cpf: string;
 
   @CreateDateColumn()
   created_at: Date;

@@ -1,5 +1,6 @@
 export default interface ICreateStudentDTO {
-  ra?: number;
   name?: string;
+  email?: string;
+  ra?: number;
   cpf?: string;
 }

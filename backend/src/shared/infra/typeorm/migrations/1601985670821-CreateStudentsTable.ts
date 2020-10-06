@@ -24,6 +24,11 @@ export default class CreateStudentsTable1601985670821
             type: 'varchar',
           },
           {
+            name: 'email',
+            type: 'varchar',
+            isUnique: true,
+          },
+          {
             name: 'cpf',
             type: 'varchar',
             isUnique: true,
