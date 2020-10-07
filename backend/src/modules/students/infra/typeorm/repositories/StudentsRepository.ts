@@ -1,4 +1,4 @@
-import { getRepository, Repository } from 'typeorm';
+import { DeleteResult, getRepository, Repository } from 'typeorm';
 
 import IStudentsRepository from '@modules/students/repositories/IStudentsRepository';
 import ICreateStudentDTO from '@modules/students/dtos/ICreateStudentDTO';
@@ -32,6 +32,16 @@ class StudentsRepository implements IStudentsRepository {
     return student;
   }
 
+  public async findByEmail(email: string): Promise<Student | undefined> {
+    const student = await this.ormRepository.findOne({
+      where: {
+        email,
+      },
+    });
+
+    return student;
+  }
+
   public async findStudents({
     name,
     email,
@@ -40,6 +50,16 @@ class StudentsRepository implements IStudentsRepository {
   }: IFindStudentsDTO): Promise<Student[]> {
     const students = await this.ormRepository.find({
       where: [{ cpf }, { name }, { ra }, { email }],
+    });
+
+    return students;
+  }
+
+  public async findAllStudents(): Promise<Student[]> {
+    const students = await this.ormRepository.find({
+      order: {
+        name: 'ASC',
+      },
     });
 
     return students;
@@ -67,8 +87,10 @@ class StudentsRepository implements IStudentsRepository {
     return this.ormRepository.save(student);
   }
 
-  public async delete(id: string): Promise<void> {
-    await this.ormRepository.delete(id);
+  public async delete(id: string): Promise<DeleteResult> {
+    const student = await this.ormRepository.delete(id);
+
+    return student;
   }
 }
 
