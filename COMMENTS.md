@@ -38,3 +38,7 @@ PS: Também utilizei as libs eslint, prettier e typescript como dependências de
 3. Faria uma interface mais otimizada em relação a requisições feitas no banco.
 
 4. Adicionaria um limitador de requisições para barrar algo/alguém que tente derrubar o server por ataque de brute force.
+
+# Requisitos obrigatórios não entregues
+
+Todos os requisitos obrigatórios foram entregues
