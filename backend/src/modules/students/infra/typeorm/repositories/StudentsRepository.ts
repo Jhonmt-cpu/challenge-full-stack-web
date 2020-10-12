@@ -1,4 +1,4 @@
-import { DeleteResult, getRepository, Repository } from 'typeorm';
+import { DeleteResult, getRepository, Like, Repository } from 'typeorm';
 
 import IStudentsRepository from '@modules/students/repositories/IStudentsRepository';
 import ICreateStudentDTO from '@modules/students/dtos/ICreateStudentDTO';
@@ -49,7 +49,7 @@ class StudentsRepository implements IStudentsRepository {
     ra,
   }: IFindStudentsDTO): Promise<Student[]> {
     const students = await this.ormRepository.find({
-      where: [{ cpf }, { name }, { ra }, { email }],
+      where: [{ cpf }, { name: Like(`%${name}%`) }, { ra }, { email }],
     });
 
     return students;
